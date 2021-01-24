@@ -3,3 +3,4 @@
 ## Prerequisites
 - Python
 - tkinter
+- Pycharm
