@@ -1,3 +1,6 @@
+import os.path
+from fileinput import filename
+
 def menu():
         print("1: Run all Apps")
         print("2: Add App")
@@ -18,16 +21,22 @@ def menu():
 
 
 def run():
-    try:
-        f = open("app-paths.txt")
-    # Do something with the file
-    except IOError:
-        print("File not accessible")
-    finally:
-        f.close()
+    if os.path.isfile('app-paths.txt'):
+        if os.path.getsize('app-paths.txt') > 0:
+            print ("File exist and not empty")
+            f = open("app-paths.txt")
+        print ("File empty!")
+    print("File not exist")
 
 def add():
-
+    app_path=(input("Add app path : "))
+    exists = False
+    if os.path.isfile('app-paths.txt'):
+        exists = True
+    else:
+        exists = False
+    
+        with open(filename, "app-paths.text")
 def update():
 
 def remove():
