@@ -1,21 +1,39 @@
-import tkinter as tk
-from tkinter import filedialog as fd, Text
-import os
+def menu():
+        print("1: Run all Apps")
+        print("2: Add App")
+        print("3: Update App")    
+        print("4: Remove App")
+        choice=int(input("Enter your choice:"))
+        if choice == 1:
+            run()
+        elif choice == 2:
+            add()
+        elif choice == 3:
+            update()
+        elif choice == 4:
+            remove()
+        else:
+            print("Invalid Input")
+            menu()
 
-window = tk.Tk()
-window.title("Python App Loader")
 
-canvas = tk.Canvas(window,width=700,height=700,bg='lightgray')
-canvas.pack()
+def run():
+    try:
+        f = open("app-paths.txt")
+    # Do something with the file
+    except IOError:
+        print("File not accessible")
+    finally:
+        f.close()
 
+def add():
 
-frame = tk.Frame(window, bg="white")
-frame.place(relwidth=0.8,relheight=0.8,relx=0.1,rely=0.1)
+def update():
 
-openfileBtn = tk.Button(window,text="Open File",fg="black",pady=10,padx=10)
-openfileBtn.pack()
+def remove():
 
-runBtn = tk.Button(window,text="Run",fg="black",pady=10,padx=25)
-runBtn.pack()
+def main():
+    menu()
 
-window.mainloop()
+if __name__ == "__main__":
+    main()
