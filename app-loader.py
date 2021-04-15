@@ -57,15 +57,30 @@ def update():
     if os.path.isfile('app-paths'):
         if os.path.getsize('app-paths') > 0:
             count = 0
-            with open("app-paths", "a+") as file_append:
+            #Read and display
+            with open("app-paths") as file_append:
                 while True:
                     count += 1
                     line = file_append.readline()
             
                     if not line:
                         break
-                    print(count+""+line.strip())
+                    print("{}: {}".format(count,line.strip()))
+                    
                 file_append.close()
+            #Ask user select path
+            update_path=int(input("Select which path to update : "))
+
+            #Append path
+            Update_app_path=(input("Update app path : "))
+            with open("app-paths", "a+") as file_append:
+                file_append.seek(0)
+                data = file_append.read(100)
+                if len(data) > 0 :
+                    file_append.write("\n")
+                file_append.write(Update_app_path)
+            file_append.close()
+
         else: print ("File empty!")
     else: print("File not exist")
 
