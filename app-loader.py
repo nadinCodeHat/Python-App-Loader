@@ -12,8 +12,8 @@ def menu():
             run()
         elif choice == 2:
             add()
-        #elif choice == 3:
-            #update()
+        elif choice == 3:
+            update()
         #elif choice == 4:
             #remove()
         #elif choice == 5:
@@ -53,7 +53,21 @@ def add():
             file_write.write(app_path)
         file_write.close()
 
-#def update():
+def update():
+    if os.path.isfile('app-paths'):
+        if os.path.getsize('app-paths') > 0:
+            count = 0
+            with open("app-paths", "a+") as file_append:
+                while True:
+                    count += 1
+                    line = file_append.readline()
+            
+                    if not line:
+                        break
+                    print(count+""+line.strip())
+                file_append.close()
+        else: print ("File empty!")
+    else: print("File not exist")
 
 #def remove():
 
