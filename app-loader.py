@@ -16,8 +16,8 @@ def menu():
             update()
         #elif choice == 4:
             #remove()
-        #elif choice == 5:
-            #quit()
+        elif choice == 5:
+            quit()
         else:
             print("Invalid Input")
             menu()
@@ -34,7 +34,6 @@ def run():
                     if not line:
                         break
                     os.startfile(line.strip())
-                file_read.close()
         else: print ("File empty!")
     else: print("File not exist")
 
@@ -47,11 +46,9 @@ def add():
             if len(data) > 0 :
                 file_append.write("\n")
             file_append.write(app_path)
-        file_append.close()
     else:
         with open("app-paths","w+") as file_write:
             file_write.write(app_path)
-        file_write.close()
 
 def update():
     if os.path.isfile('app-paths'):
@@ -67,19 +64,16 @@ def update():
                         break
                     print("{}: {}".format(count,line.strip()))
                     
-                file_append.close()
             #Ask user select path
             update_path=int(input("Select which path to update : "))
 
             #Append path
-            Update_app_path=(input("Update app path : "))
-            with open("app-paths", "a+") as file_append:
-                file_append.seek(0)
-                data = file_append.read(100)
-                if len(data) > 0 :
-                    file_append.write("\n")
-                file_append.write(Update_app_path)
-            file_append.close()
+            Update_app_path=(input("Enter update app path : "))
+            #Add line
+            list_of_lines[update_path] = Update_app_path
+            #Write to file
+            with open("app-paths", "a") as file_append:
+                file_append.writelines(list_of_lines)
 
         else: print ("File empty!")
     else: print("File not exist")
