@@ -4,7 +4,6 @@
 
 - Command Line Output
 - Menu driven
+- Enter .exe path to save
 - Save paths to a file
-- Enter exe file path to save
-- Updated exe file path
-- Delete exe file path
+- Read app paths
