@@ -1,4 +1,5 @@
 ## Python App Loader
+A python driven application to store app file paths and load them whenever you need
 
 ## Features
 
