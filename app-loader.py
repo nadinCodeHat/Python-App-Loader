@@ -2,21 +2,21 @@ import os
 from fileinput import filename
 
 def menu():
+    while True:
+        print("########## Python App loader ##########")
         print("1: Run all Apps")
         print("2: Add App")
-        print("3: Update App")    
-        print("4: Remove App")
-        print("5: Exit")
+        print("3: Read App paths")
+        print("4: Exit")
+        print("#######################################")
         choice=int(input("Enter your choice : "))
         if choice == 1:
             run()
         elif choice == 2:
             add()
         elif choice == 3:
-            update()
-        #elif choice == 4:
-            #remove()
-        elif choice == 5:
+            read()
+        elif choice == 4:
             quit()
         else:
             print("Invalid Input")
@@ -34,6 +34,7 @@ def run():
                     if not line:
                         break
                     os.startfile(line.strip())
+                    print("Running : "+line.strip())
         else: print ("File empty!")
     else: print("File not exist")
 
@@ -49,36 +50,18 @@ def add():
     else:
         with open("app-paths","w+") as file_write:
             file_write.write(app_path)
+    print("Path Added!")
 
-def update():
-    if os.path.isfile('app-paths'):
-        if os.path.getsize('app-paths') > 0:
-            count = 0
-            #Read and display
-            with open("app-paths") as file_append:
-                while True:
-                    count += 1
-                    line = file_append.readline()
-            
-                    if not line:
-                        break
-                    print("{}: {}".format(count,line.strip()))
-                    
-            #Ask user select path
-            update_path=int(input("Select which path to update : "))
-
-            #Append path
-            Update_app_path=(input("Enter update app path : "))
-            #Add line
-            list_of_lines[update_path] = Update_app_path
-            #Write to file
-            with open("app-paths", "a") as file_append:
-                file_append.writelines(list_of_lines)
-
-        else: print ("File empty!")
-    else: print("File not exist")
-
-#def remove():
+def read():
+    count = 0
+    with open("app-paths") as file_read:
+        while True:
+            count += 1
+            line = file_read.readline()
+    
+            if not line:
+                break
+            print("{}: {}".format(count, line.strip()))
 
 def main():
     menu()
